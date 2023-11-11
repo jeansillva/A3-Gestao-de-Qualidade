@@ -2,8 +2,8 @@ package aplicacao;
 
 import java.util.Date;
 
-import dao.ContatoDAO;
-import model.Contato;
+import dao.ClienteDAO;
+import model.Cliente;
 
 //MVC
 /*
@@ -16,17 +16,20 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ContatoDAO contatoDao = new ContatoDAO();
+        ClienteDAO clienteDao = new ClienteDAO();
 
-        Contato contato = new Contato();
-        contato.setNome("Maria Gabriela Dias");
-        contato.setIdade(35);
-        contato.setDataCadastro(new Date());
+        Cliente cliente = new Cliente();
+        cliente.setNome("Maria Gabriela Dias");
+        cliente.setCpf("001.111.222-33");
+        cliente.setEndereco("R. Pernambuco, 128, Betim-MG");
+        cliente.setEmail("maria@gmail.com");
+        cliente.setSenha("Maria123");
+        cliente.setDataCadastro(new Date());
 
-        contatoDao.save(contato);
+        clienteDao.save(cliente);
 
-        for (Contato c : contatoDao.getContatos()) {
-            System.out.println("Contato: " + c.getNome());
+        for (Cliente c : clienteDao.getClientes()) {
+            System.out.println("Cliente: " + c.getNome());
         }
     }
 

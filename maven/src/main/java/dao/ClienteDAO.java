@@ -8,18 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import factory.ConnectionFactory;
-import model.Contato;
+import model.Cliente;
 
-public class ContatoDAO {
+public class ClienteDAO {
 
     /*
      * CRUD c: CREATE - OK - INSERT r: READ - SELECT u: UPDATE - UPDATE d: DELETE -
      * DELETE
      */
 
-    public void save(Contato contato) {
+    public void save(Cliente cliente) {
 
-        String sql = "INSERT INTO contatos(nome, idade, datacadastro) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO clientes(nome, cpf, endereco, email, senha, dataCadastro) VALUES (?, ?, ?,?, ?,?)";
 
         Connection conn = null;
         java.sql.PreparedStatement pstm = null;
@@ -31,9 +31,12 @@ public class ContatoDAO {
             // Criamos uma PreparedStatement, para executar uma query
             pstm = conn.prepareStatement(sql);
             // Adicionar os valores que s�o esperados pela query
-            pstm.setString(1, contato.getNome());
-            pstm.setInt(2, contato.getIdade());
-            pstm.setDate(3, new Date(contato.getDataCadastro().getTime()));
+            pstm.setString(1, cliente.getNome());
+            pstm.setString(2, cliente.getCpf());
+            pstm.setString(3, cliente.getEndereco());
+            pstm.setString(4, cliente.getEmail());
+            pstm.setString(5, cliente.getSenha());
+            pstm.setDate(6, new Date(cliente.getDataCadastro().getTime()));
 
             // Executar a query
             pstm.execute();
@@ -58,11 +61,11 @@ public class ContatoDAO {
         }
     }
 
-    public List<Contato> getContatos() {
+    public List<Cliente> getClientes() {
 
-        String sql = "SELECT * FROM contatos";
+        String sql = "SELECT * FROM clientes";
 
-        List<Contato> contatos = new ArrayList<Contato>();
+        List<Cliente> clientes = new ArrayList<Cliente>();
 
         Connection conn = null;
         PreparedStatement pstm = null;
@@ -78,18 +81,17 @@ public class ContatoDAO {
 
             while (rset.next()) {
 
-                Contato contato = new Contato();
+                Cliente cliente = new Cliente();
 
-                // Recuperar o id
-                contato.setId(rset.getInt("id"));
-                // Recuperar o nome
-                contato.setNome(rset.getString("nome"));
-                // Recuperar a idade
-                contato.setId(rset.getInt("idade"));
-                // Recuperar a data de cadastrado
-                contato.setDataCadastro(rset.getDate("datacadastro"));
-
-                contatos.add(contato);
+                
+                cliente.setId(rset.getInt("id"));
+                cliente.setNome(rset.getString("nome"));
+                cliente.setCpf(rset.getString("cpf"));
+                cliente.setEndereco(rset.getString("endereco"));
+                cliente.setEmail(rset.getString("email"));
+                cliente.setSenha(rset.getString("senha"));
+                cliente.setDataCadastro(rset.getDate("datacadastro"));
+                clientes.add(cliente);
 
             }
         } catch (Exception e) {
@@ -112,7 +114,7 @@ public class ContatoDAO {
             }
         }
 
-        return contatos;
+        return clientes;
     }
 
 }
