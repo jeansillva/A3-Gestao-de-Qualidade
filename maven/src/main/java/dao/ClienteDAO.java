@@ -41,7 +41,7 @@ public class ClienteDAO {
             // Executar a query
             pstm.execute();
 
-            System.out.println("Contato salvo com sucesso!");
+            System.out.println("Cliente salvo com sucesso!");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

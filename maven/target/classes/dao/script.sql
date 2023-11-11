@@ -9,4 +9,15 @@ create table
         email varchar(80),
         senha varchar(30),
         dataCadastro date
-    )
+    );
+
+create table 
+vendedores(
+    id int not null auto_increment primary key,
+    nome varchar(50),
+    cnpj char(18),
+    endereco varchar(100),
+    email varchar(80),
+    senha varchar(30),
+    dataCadastro date
+); 
