@@ -12,11 +12,6 @@ import model.Cliente;
 
 public class ClienteDAO {
 
-    /*
-     * CRUD c: CREATE - OK - INSERT r: READ - SELECT u: UPDATE - UPDATE d: DELETE -
-     * DELETE
-     */
-
     public void saveCliente(Cliente cliente) {
 
         String sql = "INSERT INTO clientes(nome, cpf, endereco, email, senha, dataCadastro) VALUES (?, ?, ?,?, ?,?)";
@@ -25,12 +20,12 @@ public class ClienteDAO {
         java.sql.PreparedStatement pstm = null;
 
         try {
-            // Criar uma conex�o com o banco de dados
+            // Criar uma conexao com o banco de dados
             conn = ConnectionFactory.createConnectionToMySQL();
 
             // Criamos uma PreparedStatement, para executar uma query
             pstm = conn.prepareStatement(sql);
-            // Adicionar os valores que s�o esperados pela query
+            // Adicionar os valores que sao esperados pela query
             pstm.setString(1, cliente.getNome());
             pstm.setString(2, cliente.getCpf());
             pstm.setString(3, cliente.getEndereco());
@@ -46,7 +41,7 @@ public class ClienteDAO {
             e.printStackTrace();
         } finally {
 
-            // Fechar as conex�es
+            // Fechar as conexoes
             try {
                 if (pstm != null) {
                     pstm.close();

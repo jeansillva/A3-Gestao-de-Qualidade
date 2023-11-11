@@ -3,8 +3,10 @@ package aplicacao;
 import java.util.Date;
 
 import dao.ClienteDAO;
+import dao.ProdutoDAO;
 import dao.VendedorDAO;
 import model.Cliente;
+import model.Produto;
 import model.Vendedor;
 
 public class Main {
@@ -19,7 +21,7 @@ public class Main {
         cliente.setEndereco("R. Pernambuco, 128, Betim-MG");
         cliente.setEmail("maria@gmail.com");
         cliente.setSenha("Maria123");
-        cliente.setDataCadastro(new Date()); // SAVE DO CLIENTE
+        cliente.setDataCadastro(new Date()); // SAVE DO CLIENTE'
         clienteDao.saveCliente(cliente);
 
         for (Cliente c : clienteDao.getClientes()) {
@@ -38,6 +40,17 @@ public class Main {
         vendedorDAO.saveVendedor(vendedor); // SAVE DO VENDEDOR
         for(Vendedor v : vendedorDAO.getVendedores()){
             System.out.println("Vendedor: " + v.getNome());
+        }
+
+        //Adicionando Produto ao banco
+        ProdutoDAO produtoDAO = new ProdutoDAO();
+        Produto produto = new Produto();
+        produto.setNome("Bola Branca");
+        produto.setPreco(18.50);
+        produto.setQtd(10);
+        produtoDAO.saveProduto(produto);
+        for(Produto p : produtoDAO.getProdutos()){
+            System.out.println("Produto: " + p.getNome());
         }
     }
 
