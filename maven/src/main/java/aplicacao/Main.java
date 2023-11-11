@@ -20,7 +20,7 @@ public class Main {
         cliente.setEmail("maria@gmail.com");
         cliente.setSenha("Maria123");
         cliente.setDataCadastro(new Date());
-        clienteDao.save(cliente);
+        clienteDao.saveCliente(cliente);
 
         for (Cliente c : clienteDao.getClientes()) {
             System.out.println("Cliente: " + c.getNome());
@@ -35,7 +35,7 @@ public class Main {
         vendedor.setEmail("vendedor@gmail.com");
         vendedor.setSenha("Vendomuito123");
         vendedor.setDataCadastro(new Date());
-        vendedorDAO.save(vendedor);
+        vendedorDAO.saveVendedor(vendedor);
         for(Vendedor v : vendedorDAO.getVendedores()){
             System.out.println("Vendedor: " + v.getNome());
         }

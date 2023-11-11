@@ -11,7 +11,7 @@ import factory.ConnectionFactory;
 import model.Vendedor;
 
 public class VendedorDAO {
-    public void save(Vendedor vendedor) {
+    public void saveVendedor(Vendedor vendedor) {
         String sql = "INSERT INTO vendedores(nome,cnpj,endereco,email,senha,dataCadastro) VALUES (?,?,?,?,?,?)";
         Connection conn = null;
         java.sql.PreparedStatement pstm = null;

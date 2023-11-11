@@ -17,7 +17,7 @@ public class ClienteDAO {
      * DELETE
      */
 
-    public void save(Cliente cliente) {
+    public void saveCliente(Cliente cliente) {
 
         String sql = "INSERT INTO clientes(nome, cpf, endereco, email, senha, dataCadastro) VALUES (?, ?, ?,?, ?,?)";
 
