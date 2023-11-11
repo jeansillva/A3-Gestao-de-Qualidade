@@ -19,7 +19,7 @@ public class Main {
         cliente.setEndereco("R. Pernambuco, 128, Betim-MG");
         cliente.setEmail("maria@gmail.com");
         cliente.setSenha("Maria123");
-        cliente.setDataCadastro(new Date());
+        cliente.setDataCadastro(new Date()); // SAVE DO CLIENTE
         clienteDao.saveCliente(cliente);
 
         for (Cliente c : clienteDao.getClientes()) {
@@ -35,7 +35,7 @@ public class Main {
         vendedor.setEmail("vendedor@gmail.com");
         vendedor.setSenha("Vendomuito123");
         vendedor.setDataCadastro(new Date());
-        vendedorDAO.saveVendedor(vendedor);
+        vendedorDAO.saveVendedor(vendedor); // SAVE DO VENDEDOR
         for(Vendedor v : vendedorDAO.getVendedores()){
             System.out.println("Vendedor: " + v.getNome());
         }
