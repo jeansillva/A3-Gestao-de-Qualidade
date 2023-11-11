@@ -21,3 +21,11 @@ vendedores(
     senha varchar(30),
     dataCadastro date
 ); 
+
+create table
+produtos(
+    id int not null auto_increment primary key,
+    nome varchar(80),
+    preco decimal(18,2),
+    qtd int
+);
