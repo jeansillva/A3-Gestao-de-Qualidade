@@ -10,11 +10,17 @@ import factory.ConnectionFactory;
 import model.Produto;
 
 public class ProdutoDAO {
+
     public void saveProduto(Produto produto) {
+        if (produto == null || produto.getNome() == null || produto.getPreco() <= 0 || produto.getQtd() <= 0) {
+            System.out.println("Falha ao cadastrar produto. Verifique as informações fornecidas.");
+            return;
+        }
+
         String sql = "INSERT INTO produtos(nome, preco, qtd) VALUES (?,?,?)";
 
         Connection conn = null;
-        java.sql.PreparedStatement pstm = null;
+        PreparedStatement pstm = null;
         try {
             conn = ConnectionFactory.createConnectionToMySQL();
 
@@ -40,13 +46,12 @@ public class ProdutoDAO {
                 e.printStackTrace();
             }
         }
-
     }
 
     public List<Produto> getProdutos() {
         String sql = "SELECT * FROM produtos";
 
-        List<Produto> produtos = new ArrayList<Produto>();
+        List<Produto> produtos = new ArrayList<>();
 
         Connection conn = null;
         PreparedStatement pstm = null;
@@ -88,5 +93,4 @@ public class ProdutoDAO {
         }
         return produtos;
     }
-
 }

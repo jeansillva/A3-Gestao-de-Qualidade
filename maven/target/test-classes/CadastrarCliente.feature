@@ -11,3 +11,4 @@ Funcionalidade: Cadastro de novo cliente
     Dado que "Beltrano" está no sistema com suas credenciais
     Quando "Beltrano" tenta cadastrar um novo cliente com informações inválidas
     Então o sistema deve exibir uma mensagem de erro
+  

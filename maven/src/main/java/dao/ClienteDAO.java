@@ -23,9 +23,8 @@ public class ClienteDAO {
             // Criar uma conexao com o banco de dados
             conn = ConnectionFactory.createConnectionToMySQL();
 
-            // Criamos uma PreparedStatement, para executar uma query
             pstm = conn.prepareStatement(sql);
-            // Adicionar os valores que sao esperados pela query
+
             pstm.setString(1, cliente.getNome());
             pstm.setString(2, cliente.getCpf());
             pstm.setString(3, cliente.getEndereco());
@@ -78,7 +77,6 @@ public class ClienteDAO {
 
                 Cliente cliente = new Cliente();
 
-                
                 cliente.setId(rset.getInt("id"));
                 cliente.setNome(rset.getString("nome"));
                 cliente.setCpf(rset.getString("cpf"));

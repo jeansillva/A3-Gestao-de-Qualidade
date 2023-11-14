@@ -42,7 +42,6 @@ public class CadastrarClienteSteps {
         assertTrue(clienteCadastrado);
     }
 
-    // Novo cenário adicionado
     @Quando("{string} tenta cadastrar um novo cliente com informações inválidas")
     public void fulanoTentaCadastrarUmNovoClienteComInformacoesInvalidas(String nome) {
         new Main();
