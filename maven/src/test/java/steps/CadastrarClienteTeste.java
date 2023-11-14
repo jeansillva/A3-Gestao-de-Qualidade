@@ -3,14 +3,12 @@ package steps;
 import aplicacao.Main;
 import aplicacao.aplicacao;
 import dao.ClienteDAO;
-import io.cucumber.java.pt.Dado;
-import io.cucumber.java.pt.Então;
-import io.cucumber.java.pt.Quando;
+import io.cucumber.java.pt.*;
 import model.Cliente;
 
 import static org.junit.Assert.assertTrue;
 
-public class CadastrarClienteSteps {
+public class CadastrarClienteTeste {
 
     private ClienteDAO clienteDAO;
     private boolean clienteCadastrado;

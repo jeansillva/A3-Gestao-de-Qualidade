@@ -12,9 +12,16 @@ import model.Vendedor;
 
 public class VendedorDAO {
     public void saveVendedor(Vendedor vendedor) {
+        // Validação de informações obrigatórias
+        if (vendedor.getNome() == null || vendedor.getNome().isEmpty() ||
+                vendedor.getCnpj() == null || vendedor.getCnpj().isEmpty()) {
+            System.out.println("Falha ao cadastrar vendedor. Nome e CNPJ são obrigatórios.");
+            return;
+        }
+
         String sql = "INSERT INTO vendedores(nome,cnpj,endereco,email,senha,dataCadastro) VALUES (?,?,?,?,?,?)";
         Connection conn = null;
-        java.sql.PreparedStatement pstm = null;
+        PreparedStatement pstm = null;
 
         try {
             conn = ConnectionFactory.createConnectionToMySQL();
@@ -66,8 +73,8 @@ public class VendedorDAO {
                 Vendedor vendedor = new Vendedor();
 
                 vendedor.setId(rset.getInt("id"));
-                vendedor.setNome(rset.getString("nome"));
-                vendedor.setCnpj(rset.getString("cnpj"));
+                vendedor.setNome(rset.getString(""));
+                vendedor.setCnpj(rset.getString(""));
                 vendedor.setEndereco(rset.getString("endereco"));
                 vendedor.setEmail(rset.getString("email"));
                 vendedor.setSenha(rset.getString("senha"));
