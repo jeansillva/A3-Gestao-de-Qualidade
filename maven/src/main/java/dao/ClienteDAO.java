@@ -110,6 +110,7 @@ public class ClienteDAO {
         return clientes;
     }
 
+    // método para deletar cliente
     public void deleteCLiente(int id) {
         String sql = "DELETE FROM clientes WHERE id = ?";
 
@@ -143,4 +144,50 @@ public class ClienteDAO {
             }
         }
     }
+
+    // método para atualizar cliente
+
+    public void updateCliente(Cliente cliente){
+        String sql = "UPDATE clientes SET nome = ?, cpf = ?, endereco = ?, email = ?, senha = ?, dataCadastro = ? WHERE id = ?";
+
+        Connection conn = null;
+        PreparedStatement pstm = null;
+
+        try {
+            conn = ConnectionFactory.createConnectionToMySQL();
+            pstm = conn.prepareStatement(sql);
+            
+            pstm.setString(1, cliente.getNome());
+            pstm.setString(2, cliente.getCpf());
+            pstm.setString(3, cliente.getEndereco());
+            pstm.setString(4, cliente.getEmail());
+            pstm.setString(5, cliente.getSenha());
+            pstm.setDate(6, new Date(cliente.getDataCadastro().getTime()));
+            pstm.setInt(7, cliente.getId());
+
+            // Executar a query de atualização
+            int rowsAffected = pstm.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Cliente atualizado com sucesso!");
+            } else {
+                System.out.println("Cliente com ID " + cliente.getId() + " não encontrado.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstm != null) {
+                    pstm.close();
+                }
+
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

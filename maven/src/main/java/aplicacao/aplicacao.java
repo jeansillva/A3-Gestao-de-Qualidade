@@ -97,4 +97,14 @@ public class aplicacao {
         clienteDAO.deleteCLiente(idClienteDel);
 
     }
+
+    // atualizar cliente
+    public static void attCliente(){
+        Cliente clienteAtualizado = new Cliente();
+        clienteAtualizado.setId(47);
+        clienteAtualizado.setNome("Godofreudo Nazareno");
+
+        ClienteDAO clienteDAO = new ClienteDAO();
+        clienteDAO.updateCliente(clienteAtualizado);
+    }
 }

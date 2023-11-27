@@ -15,5 +15,7 @@ public class Main {
         aplicacao.exibirProdutos();
 
         aplicacao.deletarCliente();
+
+        aplicacao.attCliente();
     }
 }
