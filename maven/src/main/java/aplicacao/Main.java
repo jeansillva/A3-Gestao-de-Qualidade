@@ -13,5 +13,7 @@ public class Main {
 
         aplicacao.cadastrarNovoProduto();
         aplicacao.exibirProdutos();
+
+        aplicacao.deletarCliente();
     }
 }

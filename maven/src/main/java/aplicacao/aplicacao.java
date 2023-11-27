@@ -10,7 +10,7 @@ import model.Vendedor;
 import java.util.Date;
 
 public class aplicacao {
-
+    // adicionando cliente
     public static void cadastrarNovoCliente() {
         ClienteDAO clienteDao = new ClienteDAO();
         Cliente cliente = new Cliente();
@@ -22,7 +22,7 @@ public class aplicacao {
         cliente.setDataCadastro(new Date());
         clienteDao.saveCliente(cliente);
     }
-
+    // listando clientes
     public static void exibirClientes() {
         ClienteDAO clienteDao = new ClienteDAO();
         for (Cliente c : clienteDao.getClientes()) {
@@ -30,6 +30,7 @@ public class aplicacao {
         }
     }
 
+    // cadastrando novo vendedor
     public static void cadastrarNovoVendedor() {
         VendedorDAO vendedorDAO = new VendedorDAO();
         Vendedor vendedor = new Vendedor();
@@ -42,6 +43,7 @@ public class aplicacao {
         vendedorDAO.saveVendedor(vendedor);
     }
 
+    //listar vendedores
     public static void exibirVendedores() {
         VendedorDAO vendedorDAO = new VendedorDAO();
         for (Vendedor v : vendedorDAO.getVendedores()) {
@@ -49,6 +51,7 @@ public class aplicacao {
         }
     }
 
+    // cadastrar produto
     public static void cadastrarNovoProduto() {
         ProdutoDAO produtoDAO = new ProdutoDAO();
         Produto produto = new Produto();
@@ -58,6 +61,7 @@ public class aplicacao {
         produtoDAO.saveProduto(produto);
     }
 
+    // listar produtos
     public static void exibirProdutos() {
         ProdutoDAO produtoDAO = new ProdutoDAO();
         for (Produto p : produtoDAO.getProdutos()) {
@@ -65,6 +69,7 @@ public class aplicacao {
         }
     }
 
+     
     public static void cadastrarNovoClienteComInformacoesInvalidas() {
         ClienteDAO clienteDao = new ClienteDAO();
         Cliente cliente = new Cliente();
@@ -80,5 +85,16 @@ public class aplicacao {
         } catch (Exception e) {
             System.out.println("Erro ao cadastrar cliente com informações inválidas: " + e.getMessage());
         }
+    }
+
+    //deletar cliente
+    public static void deletarCliente(){
+        
+        // id do cliente para ser deletado
+        int idClienteDel = 3;
+        
+        ClienteDAO clienteDAO = new ClienteDAO();
+        clienteDAO.deleteCLiente(idClienteDel);
+
     }
 }
