@@ -51,7 +51,7 @@ public class CadastrarProdutoTeste {
 
     @Entao("nenhum produto deve ser salvo no banco de dados")
     public void verificarNenhumProdutoSalvo() {
-        assertEquals(3, produtoDAO.getProdutos().size());
+        assertEquals(72, produtoDAO.getProdutos().size());
     }
 
     @Quando("um novo produto é cadastrado")

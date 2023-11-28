@@ -17,6 +17,9 @@ public class Main {
         aplicacao.deletarCliente();
 
         aplicacao.attCliente();
+
+        // teste de commit
+
     }
 
 }
