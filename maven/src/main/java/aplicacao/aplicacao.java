@@ -91,7 +91,7 @@ public class aplicacao {
     public static void deletarCliente() {
 
         // id do cliente para ser deletado
-        int idClienteDel = 46;
+        int idClienteDel = 49;
 
         ClienteDAO clienteDAO = new ClienteDAO();
         clienteDAO.deleteCLiente(idClienteDel);
@@ -99,9 +99,9 @@ public class aplicacao {
     }
 
     // atualizar cliente
-    public static void attCliente(){
+    public static void attCliente() {
         Cliente clienteAtualizado = new Cliente();
-        clienteAtualizado.setId(47);
+        clienteAtualizado.setId(50);
         clienteAtualizado.setNome("Godofreudo Nazareno");
 
         ClienteDAO clienteDAO = new ClienteDAO();

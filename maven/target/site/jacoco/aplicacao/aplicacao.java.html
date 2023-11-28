@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>aplicacao.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maven</a> &gt; <a href="index.source.html" class="el_package">aplicacao</a> &gt; <span class="el_source">aplicacao.java</span></div><h1>aplicacao.java</h1><pre class="source lang-java linenums">package aplicacao;
+
+import dao.ClienteDAO;
+import dao.ProdutoDAO;
+import dao.VendedorDAO;
+import model.Cliente;
+import model.Produto;
+import model.Vendedor;
+
+import java.util.Date;
+
+<span class="nc" id="L12">public class aplicacao {</span>
+    // adicionando cliente
+    public static void cadastrarNovoCliente() {
+<span class="fc" id="L15">        ClienteDAO clienteDao = new ClienteDAO();</span>
+<span class="fc" id="L16">        Cliente cliente = new Cliente();</span>
+<span class="fc" id="L17">        cliente.setNome(&quot;Maria Gabriela Dias&quot;);</span>
+<span class="fc" id="L18">        cliente.setCpf(&quot;001.111.222-33&quot;);</span>
+<span class="fc" id="L19">        cliente.setEndereco(&quot;R. Pernambuco, 128, Betim-MG&quot;);</span>
+<span class="fc" id="L20">        cliente.setEmail(&quot;maria@gmail.com&quot;);</span>
+<span class="fc" id="L21">        cliente.setSenha(&quot;Maria123&quot;);</span>
+<span class="fc" id="L22">        cliente.setDataCadastro(new Date());</span>
+<span class="fc" id="L23">        clienteDao.saveCliente(cliente);</span>
+<span class="fc" id="L24">    }</span>
+
+    // listando clientes
+    public static void exibirClientes() {
+<span class="fc" id="L28">        ClienteDAO clienteDao = new ClienteDAO();</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        for (Cliente c : clienteDao.getClientes()) {</span>
+<span class="fc" id="L30">            System.out.println(&quot;Cliente: &quot; + c.getNome());</span>
+<span class="fc" id="L31">        }</span>
+<span class="fc" id="L32">    }</span>
+
+    // cadastrando novo vendedor
+    public static void cadastrarNovoVendedor() {
+<span class="fc" id="L36">        VendedorDAO vendedorDAO = new VendedorDAO();</span>
+<span class="fc" id="L37">        Vendedor vendedor = new Vendedor();</span>
+<span class="fc" id="L38">        vendedor.setNome(&quot;William Bonner&quot;);</span>
+<span class="fc" id="L39">        vendedor.setCnpj(&quot;00.000.000/0001-00&quot;);</span>
+<span class="fc" id="L40">        vendedor.setEndereco(&quot;R. Florinda, 001, São Paulo-SP&quot;);</span>
+<span class="fc" id="L41">        vendedor.setEmail(&quot;vendedor@gmail.com&quot;);</span>
+<span class="fc" id="L42">        vendedor.setSenha(&quot;Vendomuito123&quot;);</span>
+<span class="fc" id="L43">        vendedor.setDataCadastro(new Date());</span>
+<span class="fc" id="L44">        vendedorDAO.saveVendedor(vendedor);</span>
+<span class="fc" id="L45">    }</span>
+
+    // listar vendedores
+    public static void exibirVendedores() {
+<span class="fc" id="L49">        VendedorDAO vendedorDAO = new VendedorDAO();</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">        for (Vendedor v : vendedorDAO.getVendedores()) {</span>
+<span class="nc" id="L51">            System.out.println(&quot;Vendedor: &quot; + v.getNome());</span>
+<span class="nc" id="L52">        }</span>
+<span class="fc" id="L53">    }</span>
+
+    // cadastrar produto
+    public static void cadastrarNovoProduto() {
+<span class="fc" id="L57">        ProdutoDAO produtoDAO = new ProdutoDAO();</span>
+<span class="fc" id="L58">        Produto produto = new Produto();</span>
+<span class="fc" id="L59">        produto.setNome(&quot;Bola Branca&quot;);</span>
+<span class="fc" id="L60">        produto.setPreco(18.50);</span>
+<span class="fc" id="L61">        produto.setQtd(10);</span>
+<span class="fc" id="L62">        produtoDAO.saveProduto(produto);</span>
+<span class="fc" id="L63">    }</span>
+
+    // listar produtos
+    public static void exibirProdutos() {
+<span class="fc" id="L67">        ProdutoDAO produtoDAO = new ProdutoDAO();</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        for (Produto p : produtoDAO.getProdutos()) {</span>
+<span class="fc" id="L69">            System.out.println(&quot;Produto: &quot; + p.getNome());</span>
+<span class="fc" id="L70">        }</span>
+<span class="fc" id="L71">    }</span>
+
+    public static void cadastrarNovoClienteComInformacoesInvalidas() {
+<span class="fc" id="L74">        ClienteDAO clienteDao = new ClienteDAO();</span>
+<span class="fc" id="L75">        Cliente cliente = new Cliente();</span>
+
+<span class="fc" id="L77">        cliente.setNome(&quot;&quot;);</span>
+<span class="fc" id="L78">        cliente.setCpf(&quot;123&quot;);</span>
+<span class="fc" id="L79">        cliente.setEndereco(&quot;&quot;);</span>
+<span class="fc" id="L80">        cliente.setEmail(&quot;email@outlook.com&quot;);</span>
+<span class="fc" id="L81">        cliente.setSenha(&quot;zedamanga&quot;);</span>
+
+        try {
+<span class="fc" id="L84">            clienteDao.saveCliente(cliente);</span>
+<span class="nc" id="L85">        } catch (Exception e) {</span>
+<span class="nc" id="L86">            System.out.println(&quot;Erro ao cadastrar cliente com informações inválidas: &quot; + e.getMessage());</span>
+<span class="fc" id="L87">        }</span>
+<span class="fc" id="L88">    }</span>
+
+    // deletar cliente
+    public static void deletarCliente() {
+
+        // id do cliente para ser deletado
+<span class="nc" id="L94">        int idClienteDel = 49;</span>
+
+<span class="nc" id="L96">        ClienteDAO clienteDAO = new ClienteDAO();</span>
+<span class="nc" id="L97">        clienteDAO.deleteCLiente(idClienteDel);</span>
+
+<span class="nc" id="L99">    }</span>
+
+    // atualizar cliente
+    public static void attCliente() {
+<span class="nc" id="L103">        Cliente clienteAtualizado = new Cliente();</span>
+<span class="nc" id="L104">        clienteAtualizado.setId(50);</span>
+<span class="nc" id="L105">        clienteAtualizado.setNome(&quot;Godofreudo Nazareno&quot;);</span>
+
+<span class="nc" id="L107">        ClienteDAO clienteDAO = new ClienteDAO();</span>
+<span class="nc" id="L108">        clienteDAO.updateCliente(clienteAtualizado);</span>
+<span class="nc" id="L109">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
