@@ -50,14 +50,26 @@
     <version>7.14.0</version>
     <scope>test</scope>
 </dependency>
-
-<!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
-<dependency>
-    <groupId>org.jacoco</groupId>
-    <artifactId>jacoco-maven-plugin</artifactId>
-    <version>0.8.11</version>
-</dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Configuração do plugin JaCoCo Maven -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.11</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
 

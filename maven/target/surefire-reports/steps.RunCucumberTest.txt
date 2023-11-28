@@ -1,0 +1,13 @@
+-------------------------------------------------------------------------------
+Test set: steps.RunCucumberTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.082 s <<< FAILURE! -- in steps.RunCucumberTest
+Cadastro de Produto.Falha ao cadastrar um produto com informações inválidas -- Time elapsed: 0 s <<< FAILURE!
+java.lang.AssertionError: expected:<3> but was:<42>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:647)
+	at org.junit.Assert.assertEquals(Assert.java:633)
+	at steps.CadastrarProdutoTeste.verificarNenhumProdutoSalvo(CadastrarProdutoTeste.java:54)
+	at ✽.nenhum produto deve ser salvo no banco de dados(file:///C:/Users/Gamer/Desktop/A3%20OFICIAL/A3-Gestao-de-Qualidade/maven/src/test/resources/CadastrarProdutos.feature:15)
+

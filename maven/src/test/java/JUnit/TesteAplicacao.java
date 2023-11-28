@@ -83,8 +83,6 @@ public class TesteAplicacao {
 
         // Verifica se a lista não é nula
         assertNotNull(clientes);
-
-        // Aqui você pode adicionar mais verificações conforme necessário
     }
 
     @Test
