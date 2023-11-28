@@ -22,6 +22,7 @@ public class aplicacao {
         cliente.setDataCadastro(new Date());
         clienteDao.saveCliente(cliente);
     }
+
     // listando clientes
     public static void exibirClientes() {
         ClienteDAO clienteDao = new ClienteDAO();
@@ -43,7 +44,7 @@ public class aplicacao {
         vendedorDAO.saveVendedor(vendedor);
     }
 
-    //listar vendedores
+    // listar vendedores
     public static void exibirVendedores() {
         VendedorDAO vendedorDAO = new VendedorDAO();
         for (Vendedor v : vendedorDAO.getVendedores()) {
@@ -69,7 +70,6 @@ public class aplicacao {
         }
     }
 
-     
     public static void cadastrarNovoClienteComInformacoesInvalidas() {
         ClienteDAO clienteDao = new ClienteDAO();
         Cliente cliente = new Cliente();
@@ -87,12 +87,12 @@ public class aplicacao {
         }
     }
 
-    //deletar cliente
-    public static void deletarCliente(){
-        
+    // deletar cliente
+    public static void deletarCliente() {
+
         // id do cliente para ser deletado
-        int idClienteDel = 3;
-        
+        int idClienteDel = 46;
+
         ClienteDAO clienteDAO = new ClienteDAO();
         clienteDAO.deleteCLiente(idClienteDel);
 
