@@ -6,25 +6,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
 import factory.ConnectionFactory;
 import model.Cliente;
 
 public class ClienteDAO {
-
+    
     public void saveCliente(Cliente cliente) {
-
+        
         String sql = "INSERT INTO clientes(nome, cpf, endereco, email, senha, dataCadastro) VALUES (?, ?, ?,?, ?,?)";
-
+        
         Connection conn = null;
         java.sql.PreparedStatement pstm = null;
-
+        
         try {
             // Criar uma conexao com o banco de dados
             conn = ConnectionFactory.createConnectionToMySQL();
-
+            
             pstm = conn.prepareStatement(sql);
-
+            
             pstm.setString(1, cliente.getNome());
             pstm.setString(2, cliente.getCpf());
             pstm.setString(3, cliente.getEndereco());
@@ -34,7 +33,7 @@ public class ClienteDAO {
 
             // Executar a query
             pstm.execute();
-
+            
             System.out.println("Cliente salvo com sucesso!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,7 +44,7 @@ public class ClienteDAO {
                 if (pstm != null) {
                     pstm.close();
                 }
-
+                
                 if (conn != null) {
                     conn.close();
                 }
@@ -54,29 +53,29 @@ public class ClienteDAO {
             }
         }
     }
-
+    
     public List<Cliente> getClientes() {
-
+        
         String sql = "SELECT * FROM clientes";
-
+        
         List<Cliente> clientes = new ArrayList<Cliente>();
-
+        
         Connection conn = null;
         PreparedStatement pstm = null;
         // Classe que vai recuperar os dados do banco. ***SELECT****
         ResultSet rset = null;
-
+        
         try {
             conn = ConnectionFactory.createConnectionToMySQL();
-
+            
             pstm = conn.prepareStatement(sql);
-
+            
             rset = pstm.executeQuery();
-
+            
             while (rset.next()) {
-
+                
                 Cliente cliente = new Cliente();
-
+                
                 cliente.setId(rset.getInt("id"));
                 cliente.setNome(rset.getString("nome"));
                 cliente.setCpf(rset.getString("cpf"));
@@ -85,7 +84,7 @@ public class ClienteDAO {
                 cliente.setSenha(rset.getString("senha"));
                 cliente.setDataCadastro(rset.getDate("datacadastro"));
                 clientes.add(cliente);
-
+                
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -94,11 +93,11 @@ public class ClienteDAO {
                 if (rset != null) {
                     rset.close();
                 }
-
+                
                 if (pstm != null) {
                     pstm.close();
                 }
-
+                
                 if (conn != null) {
                     conn.close();
                 }
@@ -106,24 +105,22 @@ public class ClienteDAO {
                 e.printStackTrace();
             }
         }
-
+        
         return clientes;
     }
 
     // método para deletar cliente
     public void deleteCLiente(int id) {
         String sql = "DELETE FROM clientes WHERE id = ?";
-
+        
         Connection conn = null;
         PreparedStatement pstm = null;
-
+        
         try {
-            conn = ConnectionFactory.createConnectionToMySQL();
-            pstm = conn.prepareStatement(sql);
-            pstm.setInt(1, id);
-
+          
+            
             int rowsAffected = pstm.executeUpdate();
-
+            
             if (rowsAffected > 0) {
                 System.out.println("Cliente deletado com sucesso!");
             } else {
@@ -146,28 +143,59 @@ public class ClienteDAO {
     }
 
     // método para atualizar cliente
+    public void updateCliente(Cliente cliente) {
+        
+        StringBuilder sqlBuilder = new StringBuilder("UPDATE clientes SET ");
+        List<Object> values = new ArrayList<>();
+        
+        if (cliente.getNome() != null) {
+            sqlBuilder.append("nome = ?, ");
+            values.add(cliente.getNome());
+        }
+        if (cliente.getCpf() != null) {
+            sqlBuilder.append("cpf = ?, ");
+            values.add(cliente.getCpf());
+        }
+        if (cliente.getEndereco() != null) {
+            sqlBuilder.append("endereco = ?, ");
+            values.add(cliente.getEndereco());
+        }
+        if (cliente.getEmail() != null) {
+            sqlBuilder.append("email = ?, ");
+            values.add(cliente.getEmail());            
+        }
+        if (cliente.getSenha() != null) {
+            sqlBuilder.append("senha = ?, ");
+            values.add(cliente.getSenha());
+        }
+        if (cliente.getDataCadastro() != null) {
+            sqlBuilder.append("dataCadastro = ?, ");
+            values.add(cliente.getDataCadastro());
+        }
 
-    public void updateCliente(Cliente cliente){
-        String sql = "UPDATE clientes SET nome = ?, cpf = ?, endereco = ?, email = ?, senha = ?, dataCadastro = ? WHERE id = ?";
-
+        //remover a ultima virgula para funcionamento da query sql
+        sqlBuilder.deleteCharAt(sqlBuilder.length() - 2);
+        
+        sqlBuilder.append("WHERE ID = ?");
+        values.add(cliente.getId());
+        
+        String sql = sqlBuilder.toString();
+        
         Connection conn = null;
         PreparedStatement pstm = null;
-
+        
         try {
             conn = ConnectionFactory.createConnectionToMySQL();
             pstm = conn.prepareStatement(sql);
             
-            pstm.setString(1, cliente.getNome());
-            pstm.setString(2, cliente.getCpf());
-            pstm.setString(3, cliente.getEndereco());
-            pstm.setString(4, cliente.getEmail());
-            pstm.setString(5, cliente.getSenha());
-            pstm.setDate(6, new Date(cliente.getDataCadastro().getTime()));
-            pstm.setInt(7, cliente.getId());
-
-            // Executar a query de atualização
+            int index = 1;
+            for (Object value : values) {
+                pstm.setObject(index++, value);
+            }
+            
             int rowsAffected = pstm.executeUpdate();
-
+            
+    
             if (rowsAffected > 0) {
                 System.out.println("Cliente atualizado com sucesso!");
             } else {
@@ -180,7 +208,7 @@ public class ClienteDAO {
                 if (pstm != null) {
                     pstm.close();
                 }
-
+                
                 if (conn != null) {
                     conn.close();
                 }
@@ -189,5 +217,5 @@ public class ClienteDAO {
             }
         }
     }
-
+    
 }

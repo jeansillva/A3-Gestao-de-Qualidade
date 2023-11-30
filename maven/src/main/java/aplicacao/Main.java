@@ -3,22 +3,27 @@ package aplicacao;
 public class Main {
 
     public static void main(String[] args) {
-        aplicacao.cadastrarNovoCliente();
-        aplicacao.exibirClientes();
-
-        aplicacao.cadastrarNovoClienteComInformacoesInvalidas();
-
-        aplicacao.cadastrarNovoVendedor();
-        aplicacao.exibirVendedores();
-
-        aplicacao.cadastrarNovoProduto();
-        aplicacao.exibirProdutos();
-
-        aplicacao.deletarCliente();
-
-        aplicacao.attCliente();
-
-        // teste de commit
+       
+        //aplicacao.cadastrarNovoCliente();
+        //aplicacao.attCliente();
+        //aplicacao.deletarCliente();
+        //aplicacao.exibirClientes();
+        
+        //aplicacao.deletarProduto();
+        //aplicacao.attProduto();
+        //aplicacao.exibirProdutos();
+        
+        //aplicacao.cadastrarNovoVendedor();
+        //aplicacao.deletarVendedor();
+        //aplicacao.attVendedor();
+        //aplicacao.exibirVendedores();
+        
+        //aplicacao.cadastrarNovoProduto();
+        //aplicacao.deletarProduto();
+        //aplicacao.attProduto();
+        //aplicacao.exibirProdutos();
+        
+        
 
     }
 

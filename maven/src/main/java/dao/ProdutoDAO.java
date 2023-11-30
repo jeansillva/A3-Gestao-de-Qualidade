@@ -93,4 +93,79 @@ public class ProdutoDAO {
         }
         return produtos;
     }
+
+    //método para deletar produtos
+    public void deleteProduto(int id) {
+        String sql = "DELETE FROM produtos WHERE id = ?";
+
+        Connection conn = null;
+        PreparedStatement pstm = null;
+
+        try {
+            conn = ConnectionFactory.createConnectionToMySQL();
+            pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, id);
+
+            int rowsAffected = pstm.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Produto deletado com sucesso!");
+            } else {
+                System.out.println("Cliente com ID " + id + " não encontrado");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstm != null) {
+                    pstm.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    // método para atulizar produtos
+    public void updateProduto(Produto produto) {
+        String sql = "UPDATE produtos SET  nome = ?, preco = ?, qtd = ? WHERE id = ?";
+
+        Connection conn = null;
+        PreparedStatement pstm = null;
+
+        try {
+            conn = ConnectionFactory.createConnectionToMySQL();
+            pstm = conn.prepareStatement(sql);
+
+            pstm.setString(1, produto.getNome());
+            pstm.setDouble(2, produto.getPreco());
+            pstm.setInt(3, produto.getQtd());
+            pstm.setInt(4, produto.getId());
+
+            int rowsAffected = pstm.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Produto atualizado com sucesso!");
+            } else {
+                System.out.println("Produto com ID " + produto.getId() + "não foi encontrado.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstm != null) {
+                    pstm.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

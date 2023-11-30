@@ -10,15 +10,16 @@ import model.Vendedor;
 import java.util.Date;
 
 public class aplicacao {
+
     // adicionando cliente
     public static void cadastrarNovoCliente() {
         ClienteDAO clienteDao = new ClienteDAO();
         Cliente cliente = new Cliente();
-        cliente.setNome("Maria Gabriela Dias");
+        cliente.setNome("Godofreudo");
         cliente.setCpf("001.111.222-33");
-        cliente.setEndereco("R. Pernambuco, 128, Betim-MG");
-        cliente.setEmail("maria@gmail.com");
-        cliente.setSenha("Maria123");
+        cliente.setEndereco("R. Andorinhas, 128, Betim-MG");
+        cliente.setEmail("aa@gmail.com");
+        cliente.setSenha("aaaa");
         cliente.setDataCadastro(new Date());
         clienteDao.saveCliente(cliente);
     }
@@ -31,17 +32,50 @@ public class aplicacao {
         }
     }
 
+    // deletar cliente
+    public static void deletarCliente() {
+
+        // id do cliente para ser deletado
+        int idClienteDel = 10;
+
+        ClienteDAO clienteDAO = new ClienteDAO();
+        clienteDAO.deleteCLiente(idClienteDel);
+
+    }
+
+    // atualizar cliente
+    public static void attCliente() {
+        Cliente clienteAtualizado = new Cliente();
+        clienteAtualizado.setId(11);
+        clienteAtualizado.setEmail("tes@teste");
+        clienteAtualizado.setSenha("123");
+
+        ClienteDAO clienteDAO = new ClienteDAO();
+        clienteDAO.updateCliente(clienteAtualizado);
+
+    }
+
     // cadastrando novo vendedor
     public static void cadastrarNovoVendedor() {
         VendedorDAO vendedorDAO = new VendedorDAO();
         Vendedor vendedor = new Vendedor();
-        vendedor.setNome("William Bonner");
+        vendedor.setNome("teadsada");
         vendedor.setCnpj("00.000.000/0001-00");
-        vendedor.setEndereco("R. Florinda, 001, São Paulo-SP");
+        vendedor.setEndereco("R. Xistao, 001, São Paulo-SP");
         vendedor.setEmail("vendedor@gmail.com");
-        vendedor.setSenha("Vendomuito123");
+        vendedor.setSenha("Vendomui3");
         vendedor.setDataCadastro(new Date());
         vendedorDAO.saveVendedor(vendedor);
+    }
+
+    public static void deletarVendedor() {
+
+        // id do cliente para ser deletado
+        int idVendedorDel = 4;
+
+        VendedorDAO vendedorDAO = new VendedorDAO();
+        vendedorDAO.deleteVendedor(idVendedorDel);
+
     }
 
     // listar vendedores
@@ -51,14 +85,27 @@ public class aplicacao {
             System.out.println("Vendedor: " + v.getNome());
         }
     }
+    
+    //método para atualizar vendedores
+    
+    public static void attVendedor() {
+        Vendedor vendedorAtualizado = new Vendedor();
+        vendedorAtualizado.setId(3);
+        vendedorAtualizado.setNome("Jean");
+        vendedorAtualizado.setSenha("123");
+
+        VendedorDAO vendedorDAO = new VendedorDAO();
+        vendedorDAO.updateVendedor(vendedorAtualizado);
+
+    }
 
     // cadastrar produto
     public static void cadastrarNovoProduto() {
         ProdutoDAO produtoDAO = new ProdutoDAO();
         Produto produto = new Produto();
-        produto.setNome("Bola Branca");
-        produto.setPreco(18.50);
-        produto.setQtd(10);
+        produto.setNome("Chuteira");
+        produto.setPreco(117.50);
+        produto.setQtd(5);
         produtoDAO.saveProduto(produto);
     }
 
@@ -68,6 +115,26 @@ public class aplicacao {
         for (Produto p : produtoDAO.getProdutos()) {
             System.out.println("Produto: " + p.getNome());
         }
+    }
+    
+    //deletar produto
+    public static void deletarProduto() {
+        // id do produto a ser deletado
+        int idProduto = 7;
+        ProdutoDAO produtoDAO = new ProdutoDAO();
+        produtoDAO.deleteProduto(idProduto);
+    }
+
+    //atualizar produtos
+    public static void attProduto() {
+        Produto produtoAtualizado = new Produto();
+        produtoAtualizado.setId(9);
+        produtoAtualizado.setNome("Chuteira Nice");
+        produtoAtualizado.setPreco(120.50);
+        produtoAtualizado.setQtd(5);
+
+        ProdutoDAO produtoDAO = new ProdutoDAO();
+        produtoDAO.updateProduto(produtoAtualizado);
     }
 
     public static void cadastrarNovoClienteComInformacoesInvalidas() {
@@ -85,26 +152,5 @@ public class aplicacao {
         } catch (Exception e) {
             System.out.println("Erro ao cadastrar cliente com informações inválidas: " + e.getMessage());
         }
-    }
-
-    // deletar cliente
-    public static void deletarCliente() {
-
-        // id do cliente para ser deletado
-        int idClienteDel = 46;
-
-        ClienteDAO clienteDAO = new ClienteDAO();
-        clienteDAO.deleteCLiente(idClienteDel);
-
-    }
-
-    // atualizar cliente
-    public static void attCliente(){
-        Cliente clienteAtualizado = new Cliente();
-        clienteAtualizado.setId(47);
-        clienteAtualizado.setNome("Godofreudo Nazareno");
-
-        ClienteDAO clienteDAO = new ClienteDAO();
-        clienteDAO.updateCliente(clienteAtualizado);
     }
 }
