@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 D:\Biblioteca\Área de Trabalho\A3-Gestao-de-Qualidade\maven\src\test\java\steps\RunCucumberTest.java
 D:\Biblioteca\Área de Trabalho\A3-Gestao-de-Qualidade\maven\src\test\java\steps\CadastrarProdutoTeste.java
 D:\Biblioteca\Área de Trabalho\A3-Gestao-de-Qualidade\maven\src\test\java\steps\CadastrarVendedor.java
 D:\Biblioteca\Área de Trabalho\A3-Gestao-de-Qualidade\maven\src\test\java\JUnit\TesteAplicacao.java
 D:\Biblioteca\Área de Trabalho\A3-Gestao-de-Qualidade\maven\src\test\java\steps\CadastrarClienteTeste.java
+=======
+C:\Users\Gamer\Desktop\EntregaA3\A3-Gestao-de-Qualidade\maven\src\test\java\steps\RunCucumberTest.java
+C:\Users\Gamer\Desktop\EntregaA3\A3-Gestao-de-Qualidade\maven\src\test\java\steps\CadastrarClienteTeste.java
+C:\Users\Gamer\Desktop\EntregaA3\A3-Gestao-de-Qualidade\maven\src\test\java\JUnit\TesteAplicacao.java
+C:\Users\Gamer\Desktop\EntregaA3\A3-Gestao-de-Qualidade\maven\src\test\java\steps\CadastrarProdutoTeste.java
+C:\Users\Gamer\Desktop\EntregaA3\A3-Gestao-de-Qualidade\maven\src\test\java\steps\CadastrarVendedor.java
+>>>>>>> 920b3e600cff15353ccf42af9108682adbf1a12a

@@ -153,4 +153,28 @@ public class aplicacao {
             System.out.println("Erro ao cadastrar cliente com informações inválidas: " + e.getMessage());
         }
     }
+<<<<<<< HEAD
+=======
+
+    // deletar cliente
+    public static void deletarCliente() {
+
+        // id do cliente para ser deletado
+        int idClienteDel = 49;
+
+        ClienteDAO clienteDAO = new ClienteDAO();
+        clienteDAO.deleteCLiente(idClienteDel);
+
+    }
+
+    // atualizar cliente
+    public static void attCliente() {
+        Cliente clienteAtualizado = new Cliente();
+        clienteAtualizado.setId(50);
+        clienteAtualizado.setNome("Godofreudo Nazareno");
+
+        ClienteDAO clienteDAO = new ClienteDAO();
+        clienteDAO.updateCliente(clienteAtualizado);
+    }
+>>>>>>> 920b3e600cff15353ccf42af9108682adbf1a12a
 }
