@@ -1,6 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: steps.RunCucumberTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 6, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.365 s <<< FAILURE! -- in steps.RunCucumberTest
 Cadastro de Produto.Falha ao cadastrar um produto com informações inválidas -- Time elapsed: 0.016 s <<< FAILURE!
 java.lang.AssertionError: expected:<72> but was:<5>
@@ -20,3 +21,6 @@ java.lang.AssertionError: expected:<0> but was:<6>
 	at steps.CadastrarVendedor.verificarNenhumVendedorSalvo(CadastrarVendedor.java:66)
 	at ✽.nenhum vendedor deve ser salvo no banco de dados(file:///D:/Biblioteca/Área%20de%20Trabalho/A3-Gestao-de-Qualidade/maven/src/test/resources/CadastrarVendedor.feature:15)
 
+=======
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.412 s -- in steps.RunCucumberTest
+>>>>>>> 920b3e600cff15353ccf42af9108682adbf1a12a
