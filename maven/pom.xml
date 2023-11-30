@@ -29,7 +29,11 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Removido o plugin Surefire redundante -->
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.33</version>
+    </dependency>
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
         <dependency>
             <groupId>io.cucumber</groupId>

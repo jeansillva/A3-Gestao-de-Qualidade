@@ -94,7 +94,7 @@ public class ProdutoDAO {
         return produtos;
     }
 
-    //método para deletar produtos
+    // método para deletar produtos
     public void deleteProduto(int id) {
         String sql = "DELETE FROM produtos WHERE id = ?";
 
@@ -130,7 +130,7 @@ public class ProdutoDAO {
 
     }
 
-    // método para atulizar produtos
+    // método para atualizar produtos
     public void updateProduto(Produto produto) {
         String sql = "UPDATE produtos SET  nome = ?, preco = ?, qtd = ? WHERE id = ?";
 

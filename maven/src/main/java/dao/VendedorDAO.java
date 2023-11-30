@@ -104,7 +104,7 @@ public class VendedorDAO {
         return vendedores;
     }
 
-    //método para deletar vendedor
+    // método para deletar vendedor
     public void deleteVendedor(int id) {
         String sql = "DELETE FROM vendedores WHERE id = ?";
 
@@ -139,44 +139,9 @@ public class VendedorDAO {
         }
     }
 
-    //método para atualizar vendedor
+    // método para atualizar vendedor
     public void updateVendedor(Vendedor vendedor) {
-
-        StringBuilder sqlBuilder = new StringBuilder("UPDATE vendedores SET ");
-        List<Object> values = new ArrayList<>();
-
-        if (vendedor.getNome() != null) {
-            sqlBuilder.append("nome = ?, ");
-            values.add(vendedor.getNome());
-        }
-        if (vendedor.getCnpj() != null) {
-            sqlBuilder.append("cnpj = ?, ");
-            values.add(vendedor.getCnpj());
-        }
-        if (vendedor.getEndereco() != null) {
-            sqlBuilder.append("endereco = ?, ");
-            values.add(vendedor.getEndereco());
-        }
-        if (vendedor.getEmail() != null) {
-            sqlBuilder.append("email = ?, ");
-            values.add(vendedor.getEmail());
-        }
-        if (vendedor.getSenha() != null) {
-            sqlBuilder.append("senha = ?, ");
-            values.add(vendedor.getSenha());
-        }
-        if (vendedor.getDataCadastro() != null) {
-            sqlBuilder.append("dataCadastro = ?, ");
-            values.add(vendedor.getDataCadastro());
-        }
-
-        //remover a ultima virgula para funcionamento da query sql
-        sqlBuilder.deleteCharAt(sqlBuilder.length() - 2);
-
-        sqlBuilder.append("WHERE ID = ?");
-        values.add(vendedor.getId());
-
-        String sql = sqlBuilder.toString();
+        String sql = "UPDATE vendedores SET nome = ?, cnpj = ?, endereco = ?, email = ?, senha = ?, dataCadastro = ? WHERE id = ?";
 
         Connection conn = null;
         PreparedStatement pstm = null;
@@ -185,17 +150,21 @@ public class VendedorDAO {
             conn = ConnectionFactory.createConnectionToMySQL();
             pstm = conn.prepareStatement(sql);
 
-            int index = 1;
-            for (Object value : values) {
-                pstm.setObject(index++, value);
-            }
+            pstm.setString(1, vendedor.getNome());
+            pstm.setString(2, vendedor.getCnpj());
+            pstm.setString(3, vendedor.getEndereco());
+            pstm.setString(4, vendedor.getEmail());
+            pstm.setString(5, vendedor.getSenha());
+            pstm.setDate(6, new Date(vendedor.getDataCadastro().getTime()));
+            pstm.setInt(7, vendedor.getId());
 
+            // Executar a query de atualização
             int rowsAffected = pstm.executeUpdate();
 
             if (rowsAffected > 0) {
-                System.out.println("Cliente atualizado com sucesso!");
+                System.out.println("Vendedor atualizado com sucesso!");
             } else {
-                System.out.println("Cliente com ID " + vendedor.getId() + " não encontrado.");
+                System.out.println("Vendedor com ID " + vendedor.getId() + " não encontrado.");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -212,7 +181,6 @@ public class VendedorDAO {
                 e.printStackTrace();
             }
         }
-
     }
 
 }

@@ -15,7 +15,7 @@ public class aplicacao {
     public static void cadastrarNovoCliente() {
         ClienteDAO clienteDao = new ClienteDAO();
         Cliente cliente = new Cliente();
-        cliente.setNome("Godofreudo");
+        cliente.setNome("teste");
         cliente.setCpf("001.111.222-33");
         cliente.setEndereco("R. Andorinhas, 128, Betim-MG");
         cliente.setEmail("aa@gmail.com");
