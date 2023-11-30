@@ -85,9 +85,9 @@ public class aplicacao {
             System.out.println("Vendedor: " + v.getNome());
         }
     }
-    
-    //método para atualizar vendedores
-    
+
+    // método para atualizar vendedores
+
     public static void attVendedor() {
         Vendedor vendedorAtualizado = new Vendedor();
         vendedorAtualizado.setId(3);
@@ -116,8 +116,8 @@ public class aplicacao {
             System.out.println("Produto: " + p.getNome());
         }
     }
-    
-    //deletar produto
+
+    // deletar produto
     public static void deletarProduto() {
         // id do produto a ser deletado
         int idProduto = 7;
@@ -125,7 +125,7 @@ public class aplicacao {
         produtoDAO.deleteProduto(idProduto);
     }
 
-    //atualizar produtos
+    // atualizar produtos
     public static void attProduto() {
         Produto produtoAtualizado = new Produto();
         produtoAtualizado.setId(9);
@@ -153,28 +153,4 @@ public class aplicacao {
             System.out.println("Erro ao cadastrar cliente com informações inválidas: " + e.getMessage());
         }
     }
-<<<<<<< HEAD
-=======
-
-    // deletar cliente
-    public static void deletarCliente() {
-
-        // id do cliente para ser deletado
-        int idClienteDel = 49;
-
-        ClienteDAO clienteDAO = new ClienteDAO();
-        clienteDAO.deleteCLiente(idClienteDel);
-
-    }
-
-    // atualizar cliente
-    public static void attCliente() {
-        Cliente clienteAtualizado = new Cliente();
-        clienteAtualizado.setId(50);
-        clienteAtualizado.setNome("Godofreudo Nazareno");
-
-        ClienteDAO clienteDAO = new ClienteDAO();
-        clienteDAO.updateCliente(clienteAtualizado);
-    }
->>>>>>> 920b3e600cff15353ccf42af9108682adbf1a12a
 }

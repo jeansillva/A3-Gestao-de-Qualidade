@@ -39,7 +39,7 @@ public class TesteAplicacao {
         aplicacao.cadastrarNovoVendedor();
 
         int tamanhoDepois = vendedorDAO.getVendedores().size();
-        assertEquals(tamanhoAntes + 0, tamanhoDepois);
+        assertEquals(tamanhoAntes + 1, tamanhoDepois);
     }
 
     @Test

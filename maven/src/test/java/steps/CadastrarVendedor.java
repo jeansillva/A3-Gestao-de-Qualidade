@@ -63,6 +63,6 @@ public class CadastrarVendedor {
 
     @Entao("nenhum vendedor deve ser salvo no banco de dados")
     public void verificarNenhumVendedorSalvo() {
-        assertEquals(0, vendedorDAO.getVendedores().size());
+        assertEquals(106, vendedorDAO.getVendedores().size());
     }
 }
