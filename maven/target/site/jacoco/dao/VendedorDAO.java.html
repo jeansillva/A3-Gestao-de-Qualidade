@@ -11,96 +11,177 @@ import factory.ConnectionFactory;
 import model.Vendedor;
 
 <span class="fc" id="L13">public class VendedorDAO {</span>
+
     public void saveVendedor(Vendedor vendedor) {
         // Validação de informações obrigatórias
-<span class="pc bpc" id="L16" title="2 of 4 branches missed.">        if (vendedor.getNome() == null || vendedor.getNome().isEmpty() ||</span>
-<span class="pc bpc" id="L17" title="2 of 4 branches missed.">                vendedor.getCnpj() == null || vendedor.getCnpj().isEmpty()) {</span>
-<span class="nc" id="L18">            System.out.println(&quot;Falha ao cadastrar vendedor. Nome e CNPJ são obrigatórios.&quot;);</span>
-<span class="nc" id="L19">            return;</span>
+<span class="pc bpc" id="L17" title="2 of 4 branches missed.">        if (vendedor.getNome() == null || vendedor.getNome().isEmpty()</span>
+<span class="pc bpc" id="L18" title="2 of 4 branches missed.">                || vendedor.getCnpj() == null || vendedor.getCnpj().isEmpty()) {</span>
+<span class="nc" id="L19">            System.out.println(&quot;Falha ao cadastrar vendedor. Nome e CNPJ são obrigatórios.&quot;);</span>
+<span class="nc" id="L20">            return;</span>
         }
 
-<span class="fc" id="L22">        String sql = &quot;INSERT INTO vendedores(nome,cnpj,endereco,email,senha,dataCadastro) VALUES (?,?,?,?,?,?)&quot;;</span>
-<span class="fc" id="L23">        Connection conn = null;</span>
-<span class="fc" id="L24">        PreparedStatement pstm = null;</span>
+<span class="fc" id="L23">        String sql = &quot;INSERT INTO vendedores(nome,cnpj,endereco,email,senha,dataCadastro) VALUES (?,?,?,?,?,?)&quot;;</span>
+<span class="fc" id="L24">        Connection conn = null;</span>
+<span class="fc" id="L25">        PreparedStatement pstm = null;</span>
 
         try {
-<span class="fc" id="L27">            conn = ConnectionFactory.createConnectionToMySQL();</span>
+<span class="fc" id="L28">            conn = ConnectionFactory.createConnectionToMySQL();</span>
 
-<span class="fc" id="L29">            pstm = conn.prepareStatement(sql);</span>
-<span class="fc" id="L30">            pstm.setString(1, vendedor.getNome());</span>
-<span class="fc" id="L31">            pstm.setString(2, vendedor.getCnpj());</span>
-<span class="fc" id="L32">            pstm.setString(3, vendedor.getEndereco());</span>
-<span class="fc" id="L33">            pstm.setString(4, vendedor.getEmail());</span>
-<span class="fc" id="L34">            pstm.setString(5, vendedor.getSenha());</span>
-<span class="fc" id="L35">            pstm.setDate(6, new Date(vendedor.getDataCadastro().getTime()));</span>
+<span class="fc" id="L30">            pstm = conn.prepareStatement(sql);</span>
+<span class="fc" id="L31">            pstm.setString(1, vendedor.getNome());</span>
+<span class="fc" id="L32">            pstm.setString(2, vendedor.getCnpj());</span>
+<span class="fc" id="L33">            pstm.setString(3, vendedor.getEndereco());</span>
+<span class="fc" id="L34">            pstm.setString(4, vendedor.getEmail());</span>
+<span class="fc" id="L35">            pstm.setString(5, vendedor.getSenha());</span>
+<span class="fc" id="L36">            pstm.setDate(6, new Date(vendedor.getDataCadastro().getTime()));</span>
 
-<span class="fc" id="L37">            pstm.execute();</span>
+<span class="fc" id="L38">            pstm.execute();</span>
 
-<span class="fc" id="L39">            System.out.println(&quot;Vendedor salvo com sucesso!&quot;);</span>
-<span class="fc" id="L40">        } catch (Exception e) {</span>
-<span class="fc" id="L41">            e.printStackTrace();</span>
+<span class="fc" id="L40">            System.out.println(&quot;Vendedor salvo com sucesso!&quot;);</span>
+<span class="fc" id="L41">        } catch (Exception e) {</span>
+<span class="fc" id="L42">            e.printStackTrace();</span>
         } finally {
             try {
-<span class="pc bpc" id="L44" title="1 of 2 branches missed.">                if (pstm != null) {</span>
-<span class="fc" id="L45">                    pstm.close();</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">                if (pstm != null) {</span>
+<span class="fc" id="L46">                    pstm.close();</span>
                 }
 
-<span class="pc bpc" id="L48" title="1 of 2 branches missed.">                if (conn != null) {</span>
-<span class="fc" id="L49">                    conn.close();</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">                if (conn != null) {</span>
+<span class="fc" id="L50">                    conn.close();</span>
                 }
-<span class="nc" id="L51">            } catch (Exception e) {</span>
-<span class="nc" id="L52">                e.printStackTrace();</span>
-<span class="fc" id="L53">            }</span>
+<span class="nc" id="L52">            } catch (Exception e) {</span>
+<span class="nc" id="L53">                e.printStackTrace();</span>
+<span class="fc" id="L54">            }</span>
         }
-<span class="fc" id="L55">    }</span>
+<span class="fc" id="L56">    }</span>
 
     public List&lt;Vendedor&gt; getVendedores() {
-<span class="fc" id="L58">        String sql = &quot;SELECT * FROM vendedores&quot;;</span>
-<span class="fc" id="L59">        List&lt;Vendedor&gt; vendedores = new ArrayList&lt;Vendedor&gt;();</span>
+<span class="fc" id="L59">        String sql = &quot;SELECT * FROM vendedores&quot;;</span>
+<span class="fc" id="L60">        List&lt;Vendedor&gt; vendedores = new ArrayList&lt;Vendedor&gt;();</span>
 
-<span class="fc" id="L61">        Connection conn = null;</span>
-<span class="fc" id="L62">        PreparedStatement pstm = null;</span>
-<span class="fc" id="L63">        ResultSet rset = null;</span>
+<span class="fc" id="L62">        Connection conn = null;</span>
+<span class="fc" id="L63">        PreparedStatement pstm = null;</span>
+<span class="fc" id="L64">        ResultSet rset = null;</span>
 
         try {
-<span class="fc" id="L66">            conn = ConnectionFactory.createConnectionToMySQL();</span>
+<span class="fc" id="L67">            conn = ConnectionFactory.createConnectionToMySQL();</span>
 
-<span class="fc" id="L68">            pstm = conn.prepareStatement(sql);</span>
+<span class="fc" id="L69">            pstm = conn.prepareStatement(sql);</span>
 
-<span class="fc" id="L70">            rset = pstm.executeQuery();</span>
+<span class="fc" id="L71">            rset = pstm.executeQuery();</span>
 
-<span class="pc bpc" id="L72" title="1 of 2 branches missed.">            while (rset.next()) {</span>
-<span class="fc" id="L73">                Vendedor vendedor = new Vendedor();</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">            while (rset.next()) {</span>
+<span class="fc" id="L74">                Vendedor vendedor = new Vendedor();</span>
 
-<span class="fc" id="L75">                vendedor.setId(rset.getInt(&quot;id&quot;));</span>
-<span class="nc" id="L76">                vendedor.setNome(rset.getString(&quot;&quot;));</span>
-<span class="nc" id="L77">                vendedor.setCnpj(rset.getString(&quot;&quot;));</span>
-<span class="nc" id="L78">                vendedor.setEndereco(rset.getString(&quot;endereco&quot;));</span>
-<span class="nc" id="L79">                vendedor.setEmail(rset.getString(&quot;email&quot;));</span>
-<span class="nc" id="L80">                vendedor.setSenha(rset.getString(&quot;senha&quot;));</span>
-<span class="nc" id="L81">                vendedor.setDataCadastro(rset.getDate(&quot;datacadastro&quot;));</span>
-<span class="nc" id="L82">                vendedores.add(vendedor);</span>
-<span class="nc" id="L83">            }</span>
-<span class="fc" id="L84">        } catch (Exception e) {</span>
-<span class="fc" id="L85">            e.printStackTrace();</span>
+<span class="fc" id="L76">                vendedor.setId(rset.getInt(&quot;id&quot;));</span>
+<span class="fc" id="L77">                vendedor.setNome(rset.getString(&quot;nome&quot;));</span>
+<span class="fc" id="L78">                vendedor.setCnpj(rset.getString(&quot;cnpj&quot;));</span>
+<span class="fc" id="L79">                vendedor.setEndereco(rset.getString(&quot;endereco&quot;));</span>
+<span class="fc" id="L80">                vendedor.setEmail(rset.getString(&quot;email&quot;));</span>
+<span class="fc" id="L81">                vendedor.setSenha(rset.getString(&quot;senha&quot;));</span>
+<span class="fc" id="L82">                vendedor.setDataCadastro(rset.getDate(&quot;datacadastro&quot;));</span>
+<span class="fc" id="L83">                vendedores.add(vendedor);</span>
+<span class="fc" id="L84">            }</span>
+<span class="nc" id="L85">        } catch (Exception e) {</span>
+<span class="nc" id="L86">            e.printStackTrace();</span>
         } finally {
             try {
-<span class="pc bpc" id="L88" title="1 of 2 branches missed.">                if (rset != null) {</span>
-<span class="fc" id="L89">                    rset.close();</span>
+<span class="pc bpc" id="L89" title="1 of 2 branches missed.">                if (rset != null) {</span>
+<span class="fc" id="L90">                    rset.close();</span>
                 }
 
-<span class="pc bpc" id="L92" title="1 of 2 branches missed.">                if (pstm != null) {</span>
-<span class="fc" id="L93">                    pstm.close();</span>
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">                if (pstm != null) {</span>
+<span class="fc" id="L94">                    pstm.close();</span>
                 }
 
-<span class="pc bpc" id="L96" title="1 of 2 branches missed.">                if (conn != null) {</span>
-<span class="fc" id="L97">                    conn.close();</span>
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">                if (conn != null) {</span>
+<span class="fc" id="L98">                    conn.close();</span>
                 }
-<span class="nc" id="L99">            } catch (Exception e) {</span>
-<span class="nc" id="L100">                e.printStackTrace();</span>
-<span class="fc" id="L101">            }</span>
+<span class="nc" id="L100">            } catch (Exception e) {</span>
+<span class="nc" id="L101">                e.printStackTrace();</span>
+<span class="fc" id="L102">            }</span>
         }
-<span class="fc" id="L103">        return vendedores;</span>
+<span class="fc" id="L104">        return vendedores;</span>
     }
+
+    // método para deletar vendedor
+    public void deleteVendedor(int id) {
+<span class="nc" id="L109">        String sql = &quot;DELETE FROM vendedores WHERE id = ?&quot;;</span>
+
+<span class="nc" id="L111">        Connection conn = null;</span>
+<span class="nc" id="L112">        PreparedStatement pstm = null;</span>
+
+        try {
+<span class="nc" id="L115">            conn = ConnectionFactory.createConnectionToMySQL();</span>
+<span class="nc" id="L116">            pstm = conn.prepareStatement(sql);</span>
+<span class="nc" id="L117">            pstm.setInt(1, id);</span>
+
+<span class="nc" id="L119">            int rowsAffected = pstm.executeUpdate();</span>
+
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            if (rowsAffected &gt; 0) {</span>
+<span class="nc" id="L122">                System.out.println(&quot;Vendedor deletado com sucesso&quot;);</span>
+            } else {
+<span class="nc" id="L124">                System.out.println(&quot;Vendedor com ID &quot; + id + &quot; não encontrado.&quot;);</span>
+            }
+<span class="nc" id="L126">        } catch (Exception e) {</span>
+<span class="nc" id="L127">            e.printStackTrace();</span>
+        } finally {
+            try {
+<span class="nc bnc" id="L130" title="All 2 branches missed.">                if (pstm != null) {</span>
+<span class="nc" id="L131">                    pstm.close();</span>
+                }
+<span class="nc bnc" id="L133" title="All 2 branches missed.">                if (conn != null) {</span>
+<span class="nc" id="L134">                    conn.close();</span>
+                }
+<span class="nc" id="L136">            } catch (Exception e) {</span>
+<span class="nc" id="L137">                e.printStackTrace();</span>
+<span class="nc" id="L138">            }</span>
+        }
+<span class="nc" id="L140">    }</span>
+
+    // método para atualizar vendedor
+    public void updateVendedor(Vendedor vendedor) {
+<span class="nc" id="L144">        String sql = &quot;UPDATE vendedores SET nome = ?, cnpj = ?, endereco = ?, email = ?, senha = ?, dataCadastro = ? WHERE id = ?&quot;;</span>
+
+<span class="nc" id="L146">        Connection conn = null;</span>
+<span class="nc" id="L147">        PreparedStatement pstm = null;</span>
+
+        try {
+<span class="nc" id="L150">            conn = ConnectionFactory.createConnectionToMySQL();</span>
+<span class="nc" id="L151">            pstm = conn.prepareStatement(sql);</span>
+
+<span class="nc" id="L153">            pstm.setString(1, vendedor.getNome());</span>
+<span class="nc" id="L154">            pstm.setString(2, vendedor.getCnpj());</span>
+<span class="nc" id="L155">            pstm.setString(3, vendedor.getEndereco());</span>
+<span class="nc" id="L156">            pstm.setString(4, vendedor.getEmail());</span>
+<span class="nc" id="L157">            pstm.setString(5, vendedor.getSenha());</span>
+<span class="nc" id="L158">            pstm.setDate(6, new Date(vendedor.getDataCadastro().getTime()));</span>
+<span class="nc" id="L159">            pstm.setInt(7, vendedor.getId());</span>
+
+            // Executar a query de atualização
+<span class="nc" id="L162">            int rowsAffected = pstm.executeUpdate();</span>
+
+<span class="nc bnc" id="L164" title="All 2 branches missed.">            if (rowsAffected &gt; 0) {</span>
+<span class="nc" id="L165">                System.out.println(&quot;Vendedor atualizado com sucesso!&quot;);</span>
+            } else {
+<span class="nc" id="L167">                System.out.println(&quot;Vendedor com ID &quot; + vendedor.getId() + &quot; não encontrado.&quot;);</span>
+            }
+<span class="nc" id="L169">        } catch (Exception e) {</span>
+<span class="nc" id="L170">            e.printStackTrace();</span>
+        } finally {
+            try {
+<span class="nc bnc" id="L173" title="All 2 branches missed.">                if (pstm != null) {</span>
+<span class="nc" id="L174">                    pstm.close();</span>
+                }
+
+<span class="nc bnc" id="L177" title="All 2 branches missed.">                if (conn != null) {</span>
+<span class="nc" id="L178">                    conn.close();</span>
+                }
+<span class="nc" id="L180">            } catch (Exception e) {</span>
+<span class="nc" id="L181">                e.printStackTrace();</span>
+<span class="nc" id="L182">            }</span>
+        }
+<span class="nc" id="L184">    }</span>
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -93,5 +93,80 @@ import model.Produto;
         }
 <span class="fc" id="L94">        return produtos;</span>
     }
+
+    // método para deletar produtos
+    public void deleteProduto(int id) {
+<span class="nc" id="L99">        String sql = &quot;DELETE FROM produtos WHERE id = ?&quot;;</span>
+
+<span class="nc" id="L101">        Connection conn = null;</span>
+<span class="nc" id="L102">        PreparedStatement pstm = null;</span>
+
+        try {
+<span class="nc" id="L105">            conn = ConnectionFactory.createConnectionToMySQL();</span>
+<span class="nc" id="L106">            pstm = conn.prepareStatement(sql);</span>
+<span class="nc" id="L107">            pstm.setInt(1, id);</span>
+
+<span class="nc" id="L109">            int rowsAffected = pstm.executeUpdate();</span>
+
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            if (rowsAffected &gt; 0) {</span>
+<span class="nc" id="L112">                System.out.println(&quot;Produto deletado com sucesso!&quot;);</span>
+            } else {
+<span class="nc" id="L114">                System.out.println(&quot;Cliente com ID &quot; + id + &quot; não encontrado&quot;);</span>
+            }
+<span class="nc" id="L116">        } catch (Exception e) {</span>
+<span class="nc" id="L117">            e.printStackTrace();</span>
+        } finally {
+            try {
+<span class="nc bnc" id="L120" title="All 2 branches missed.">                if (pstm != null) {</span>
+<span class="nc" id="L121">                    pstm.close();</span>
+                }
+<span class="nc bnc" id="L123" title="All 2 branches missed.">                if (conn != null) {</span>
+<span class="nc" id="L124">                    conn.close();</span>
+                }
+<span class="nc" id="L126">            } catch (Exception e) {</span>
+<span class="nc" id="L127">                e.printStackTrace();</span>
+<span class="nc" id="L128">            }</span>
+        }
+
+<span class="nc" id="L131">    }</span>
+
+    // método para atualizar produtos
+    public void updateProduto(Produto produto) {
+<span class="nc" id="L135">        String sql = &quot;UPDATE produtos SET  nome = ?, preco = ?, qtd = ? WHERE id = ?&quot;;</span>
+
+<span class="nc" id="L137">        Connection conn = null;</span>
+<span class="nc" id="L138">        PreparedStatement pstm = null;</span>
+
+        try {
+<span class="nc" id="L141">            conn = ConnectionFactory.createConnectionToMySQL();</span>
+<span class="nc" id="L142">            pstm = conn.prepareStatement(sql);</span>
+
+<span class="nc" id="L144">            pstm.setString(1, produto.getNome());</span>
+<span class="nc" id="L145">            pstm.setDouble(2, produto.getPreco());</span>
+<span class="nc" id="L146">            pstm.setInt(3, produto.getQtd());</span>
+<span class="nc" id="L147">            pstm.setInt(4, produto.getId());</span>
+
+<span class="nc" id="L149">            int rowsAffected = pstm.executeUpdate();</span>
+
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (rowsAffected &gt; 0) {</span>
+<span class="nc" id="L152">                System.out.println(&quot;Produto atualizado com sucesso!&quot;);</span>
+            } else {
+<span class="nc" id="L154">                System.out.println(&quot;Produto com ID &quot; + produto.getId() + &quot;não foi encontrado.&quot;);</span>
+            }
+<span class="nc" id="L156">        } catch (Exception e) {</span>
+<span class="nc" id="L157">            e.printStackTrace();</span>
+        } finally {
+            try {
+<span class="nc bnc" id="L160" title="All 2 branches missed.">                if (pstm != null) {</span>
+<span class="nc" id="L161">                    pstm.close();</span>
+                }
+<span class="nc bnc" id="L163" title="All 2 branches missed.">                if (conn != null) {</span>
+<span class="nc" id="L164">                    conn.close();</span>
+                }
+<span class="nc" id="L166">            } catch (Exception e) {</span>
+<span class="nc" id="L167">                e.printStackTrace();</span>
+<span class="nc" id="L168">            }</span>
+        }
+<span class="nc" id="L170">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
